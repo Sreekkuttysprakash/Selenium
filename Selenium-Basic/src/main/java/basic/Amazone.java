@@ -17,7 +17,7 @@ public class Amazone {
 		driver.get("https://www.amazon.in/");
 		driver.manage().window().maximize();
 	    WebElement css = driver.findElement(By.cssSelector("#twotabsearchtextbox"));
-		css.sendKeys("pen");
+		css.sendKeys("bag");
 
 	}
 
