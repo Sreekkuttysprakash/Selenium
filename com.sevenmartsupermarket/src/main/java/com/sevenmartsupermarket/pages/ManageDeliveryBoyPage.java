@@ -14,7 +14,7 @@ import com.sevenmartsupermarket.utilities.WaitUtility;
 
 public class ManageDeliveryBoyPage {
 	WebDriver driver;
-	GeneralUtility generalUtility;
+	GeneralUtility   generalUtility;
 	PageUtility pageUtility;
 
 	@FindBy(xpath = "//ul[@class='nav nav-pills nav-sidebar flex-column']//li[13]")
