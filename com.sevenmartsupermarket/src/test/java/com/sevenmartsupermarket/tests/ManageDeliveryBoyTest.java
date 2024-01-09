@@ -1,7 +1,6 @@
 package com.sevenmartsupermarket.tests;
+
 import java.util.List;
-
-
 
 import org.openqa.selenium.WebDriver;
 
@@ -14,34 +13,30 @@ import com.sevenmartsupermarket.pages.LoginPage;
 import com.sevenmartsupermarket.pages.ManageDeliveryBoyPage;
 import com.sevenmartsupermarket.utilities.ExcelRead;
 
-
 public class ManageDeliveryBoyTest extends Base {
-	
+
 	ManageDeliveryBoyPage manageDeliveryBoyPage;
 
 	LoginPage loginPage;
 
-	ExcelRead excelRead=new ExcelRead();
+	ExcelRead excelRead = new ExcelRead();
 
-	SoftAssert softassert=new SoftAssert();
-
+	SoftAssert softassert = new SoftAssert();
 	
 
-	
-
-	@Test(groups="smoke")
+	@Test(groups = "smoke")
 
 	public void verifyDeliverBoyEdit() {
 
-		loginPage=new LoginPage(driver);
+		loginPage = new LoginPage(driver);
 
-		manageDeliveryBoyPage=new ManageDeliveryBoyPage(driver);	
+		manageDeliveryBoyPage = new ManageDeliveryBoyPage(driver);
 
 		loginPage.login();
 
 		manageDeliveryBoyPage.clickOnManageDeliveryBoy();
 
-		manageDeliveryBoyPage.editDeliveryBoy("ShameenaPS");	
+		manageDeliveryBoyPage.editDeliveryBoy("ShameenaPS");
 
 		manageDeliveryBoyPage.enterName("Rahul");
 
@@ -49,15 +44,13 @@ public class ManageDeliveryBoyTest extends Base {
 
 	}
 
-	
-
-	@Test(groups={"smoke","regresion"})
+	@Test(groups = { "smoke", "regresion" })
 
 	public void verifyCreatingNewDeliveryBoy() {
 
-		loginPage=new LoginPage(driver);
+		loginPage = new LoginPage(driver);
 
-		manageDeliveryBoyPage=new ManageDeliveryBoyPage(driver);	
+		manageDeliveryBoyPage = new ManageDeliveryBoyPage(driver);
 
 		loginPage.login();
 
@@ -67,21 +60,21 @@ public class ManageDeliveryBoyTest extends Base {
 
 		excelRead.setExcelFile("CreateDeliveryBoy", "Vaid Delivery Boy");
 
-		String name=excelRead.getCellData(8, 0);
+		String name = excelRead.getCellData(8, 0);
 
-		String email=excelRead.getCellData(8, 1);
+		String email = excelRead.getCellData(8, 1);
 
-		String phone=excelRead.getCellData(8, 2);
+		String phone = excelRead.getCellData(8, 2);
 
-		String address=excelRead.getCellData(8, 3);
+		String address = excelRead.getCellData(8, 3);
 
-		String username=excelRead.getCellData(8, 4);
+		String username = excelRead.getCellData(8, 4);
 
-		String password=excelRead.getCellData(8, 5);
+		String password = excelRead.getCellData(8, 5);
 
 		manageDeliveryBoyPage.sendDeliveryBoyData(name, email, phone, address, username, password);
 
-		List<String> actualData=manageDeliveryBoyPage.getDeliveryBoyDetails();
+		List<String> actualData = manageDeliveryBoyPage.getDeliveryBoyDetails();
 
 		softassert.assertEquals(actualData.get(0), name);
 
@@ -89,15 +82,13 @@ public class ManageDeliveryBoyTest extends Base {
 
 		softassert.assertEquals(actualData.get(2), phone);
 
-	//	softassert.assertEquals(actualData.get(3), address);
+		// softassert.assertEquals(actualData.get(3), address);
 
 		softassert.assertEquals(actualData.get(4), username);
 
 		softassert.assertTrue(manageDeliveryBoyPage.isSuccessMessageAlertDisplayed());
 
 		softassert.assertAll();
-
-		
 
 	}
 }
